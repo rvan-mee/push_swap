@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/05 15:17:56 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/22 17:12:06 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/23 15:59:35 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	main(int argc, char **argv)
 	input_check(&argc, argv, &head_a);
 	position_sort(head_a, argc);
 	duplicate_check(head_a);
-	reverse_sort_check(&head_a);
 	if (is_sorted(head_a))
 		return (0);
 	sort_lst(&head_a, &head_b, argc);

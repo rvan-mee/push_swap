@@ -6,11 +6,21 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 16:50:46 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/22 17:10:08 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/23 15:54:20 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	last_pos(t_list **head_a)
+{
+	t_list	*tmp;
+
+	tmp = (*head_a);
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp->pos);
+}
 
 int	current_lowest(t_list **head_a)
 {
