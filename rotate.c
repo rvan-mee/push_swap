@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 18:47:41 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/22 17:07:09 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/28 13:46:27 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	rotate_lst(t_list **head_lst, char *str)
 	t_list	*tmp;
 	t_list	*last;
 
+	if (ft_lstsize(*head_lst) == 1)
+		return ;
 	last = ft_lstlast(*head_lst);
 	tmp = *head_lst;
 	last->next = tmp;

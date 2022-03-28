@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 16:50:46 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/23 15:54:20 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/28 16:47:10 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	last_pos(t_list **head_a)
 	return (tmp->pos);
 }
 
-int	current_lowest(t_list **head_a)
+int	current_lowest(t_list **head)
 {
 	int		current_lowest;
 	int		i;
@@ -30,7 +30,7 @@ int	current_lowest(t_list **head_a)
 
 	i = 0;
 	current_lowest = INT_MAX;
-	tmp = (*head_a);
+	tmp = (*head);
 	while (tmp != NULL)
 	{
 		if (tmp->pos < current_lowest)
@@ -40,15 +40,15 @@ int	current_lowest(t_list **head_a)
 	return (current_lowest);
 }
 
-int	lowest_half(t_list **head_a, int lowest)
+int	lowest_half(t_list **head, int lowest)
 {
 	t_list	*tmp;
 	int		list_size;
 	int		i;
 
 	i = 0;
-	tmp = (*head_a);
-	list_size = ft_lstsize((*head_a));
+	tmp = (*head);
+	list_size = ft_lstsize((*head));
 	while (tmp->pos != lowest && tmp != NULL)
 	{
 		tmp = tmp->next;
@@ -71,13 +71,10 @@ void	get_lowest(t_list **head_a, t_list **head_b)
 		while ((*head_a)->pos != lowest)
 			rotate_lst(head_a, "ra\n");
 	}
-	else if (lowest_half(head_a, lowest) == 2)
+	else
 	{
 		while ((*head_a)->pos != lowest)
 			reverse_rotate_lst(head_a, "rra\n");
 	}
-	if (!is_sorted((*head_a)))
-		push_lst(head_a, head_b, "pb\n");
-	else
-		exit(0);
+	push_lst(head_a, head_b, "pb\n");
 }

@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 
 int		is_sorted(t_list *lst);
-int		lowest_half(t_list **head_a, int lowest);
+int		lowest_half(t_list **head, int lowest);
 int		last_pos(t_list **head_a);
 void	input_check(int *argc, char **argv, t_list **a);
 void	duplicate_check(t_list *a);
@@ -27,6 +27,7 @@ void	sort_lst(t_list **head_a, t_list **head_b, int argc);
 void	sort_3(t_list **head_a);
 void	sort_4(t_list **head_a, t_list **head_b);
 void	sort_5(t_list **head_a, t_list **head_b);
+void	small_sort(t_list **head_a, t_list **head_b, int argc);
 void	push_lst(t_list **take, t_list **push, char *str);
 void	reverse_rotate_lst(t_list **head_lst, char *str);
 void	reverse_rotate_both_lst(t_list **head_a, t_list **head_b);
@@ -35,6 +36,7 @@ void	rotate_both_lst(t_list **head_a, t_list **head_b);
 void	swap_lst(t_list **head_lst, char *str);
 void	swap_both_lst(t_list **head_a, t_list **head_b);
 void	get_lowest(t_list **head_a, t_list **head_b);
+void	heighest_to_a(t_list **head_a, t_list **head_b);
 
 void	print_lists(t_list *head_a, t_list *head_b);
 

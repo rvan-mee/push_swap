@@ -6,10 +6,12 @@ SRC = main.c			\
 	  swap.c			\
 	  sorting.c			\
 	  lowest.c			\
+	  small_sort.c		\
+	  highest.c			\
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 ## -fsanitize=address -g
 TARGET = push_swap
 

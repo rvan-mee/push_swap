@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/05 15:17:56 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/23 15:59:35 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/28 13:47:54 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	main(int argc, char **argv)
 	if (is_sorted(head_a))
 		return (0);
 	sort_lst(&head_a, &head_b, argc);
-	print_lists(head_a, head_b);
+	// print_lists(head_a, head_b);
 	return (0);
 }

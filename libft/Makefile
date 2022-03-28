@@ -51,7 +51,7 @@ BNS_OBJ = $(BNS:_bonus.c=_bonus.o)
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 ## 		-fsanitize=address -g
 CC = gcc
 
