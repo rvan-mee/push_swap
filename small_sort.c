@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:13:36 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/30 15:59:05 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/30 16:46:03 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	range_smallest_from_top(int start_range, int end_range, t_list **head)
 	count = 0;
 	while (tmp != NULL && (tmp->pos < start_range || tmp->pos > end_range))
 	{
-		tmp =  tmp->next;
+		tmp = tmp->next;
 		count += 1;
 	}
 	return (count);
@@ -30,7 +30,6 @@ int	range_smallest_from_top(int start_range, int end_range, t_list **head)
 int	range_smallest_from_bot(int start_range, int end_range, t_list **head)
 {
 	t_list	*tmp;
-	t_list	*last;
 	int		count;
 	int		lst_size;
 	int		current_count;
@@ -38,10 +37,7 @@ int	range_smallest_from_bot(int start_range, int end_range, t_list **head)
 	count = 0;
 	current_count = 0;
 	tmp = *head;
-	last = ft_lstlast(*head);
 	lst_size = ft_lstsize(*head);
-	if (last->pos >= start_range && last->pos <= end_range)
-		return (0);
 	while (tmp->next != NULL)
 	{
 		if (tmp->pos >= start_range && tmp->pos <= end_range)
@@ -52,33 +48,41 @@ int	range_smallest_from_bot(int start_range, int end_range, t_list **head)
 	return (lst_size - count);
 }
 
-void	small_sort_helper(t_list **head_a, t_list **head_b, int range_start, int range_end)
+void	small_sort_rotate(t_list **head_a, int top, int bot, int selection)
+{
+	if (selection == 1)
+	{
+		while (top > 0)
+		{
+			rotate_lst(head_a, "ra\n");
+			top -= 1;
+		}
+	}
+	else
+	{
+		while (bot > 0)
+		{
+			reverse_rotate_lst(head_a, "rra\n");
+			bot -= 1;
+		}
+	}
+}
+
+void	sort_helper(t_list **head_a, t_list **head_b, int range_s, int range_e)
 {
 	int	top;
 	int	bot;
 	int	i;
 
 	i = 0;
-	while (i < range_end - range_start)
+	while (i < range_e - range_s)
 	{
-		bot = range_smallest_from_bot(range_start, range_end, head_a);
-		top = range_smallest_from_top(range_start, range_end, head_a);
+		bot = range_smallest_from_bot(range_s, range_e, head_a);
+		top = range_smallest_from_top(range_s, range_e, head_a);
 		if (top <= bot)
-		{
-			while (top > 0)
-			{
-				rotate_lst(head_a, "ra\n");
-				top -= 1;
-			}
-		}
+			small_sort_rotate(head_a, top, bot, 1);
 		else if (top > bot && bot != 0)
-		{
-			while (bot > 0)
-			{
-				reverse_rotate_lst(head_a, "rra\n");
-				bot -= 1;
-			}
-		}
+			small_sort_rotate(head_a, top, bot, 2);
 		else if (bot == 0)
 			reverse_rotate_lst(head_a, "rra\n");
 		push_lst(head_a, head_b, "pb\n");
@@ -95,11 +99,11 @@ void	small_sort(t_list **head_a, t_list **head_b, int argc)
 
 	i = 0;
 	offset = 0;
-	pre_sort_stacks = argc / 100 + 5;
+	pre_sort_stacks = argc / 2 / 10 + 1;
 	range = argc / pre_sort_stacks;
 	while (i < pre_sort_stacks)
 	{
-		small_sort_helper(head_a, head_b, range * i, range * (i + 1) + offset);
+		sort_helper(head_a, head_b, range * i, range * (i + 1) + offset);
 		i += 1;
 		if (i == pre_sort_stacks - 1)
 			offset += argc % pre_sort_stacks;
