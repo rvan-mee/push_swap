@@ -6,55 +6,17 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 11:59:01 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/28 14:37:56 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/30 16:03:58 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_5_helper(t_list **head_a, t_list **head_b)
-{
-	if ((*head_b)->pos > (*head_a)->next->pos
-		&& (*head_b)->pos < (*head_a)->next->next->pos)
-	{
-		rotate_lst(head_a, "ra\n");
-		push_lst(head_b, head_a, "pa\n");
-		swap_lst(head_a, "sa\n");
-		reverse_rotate_lst(head_a, "rra\n");
-	}
-	else if ((*head_b)->pos > (*head_a)->next->next->pos
-		&& (*head_b)->pos < (*head_a)->next->next->next->pos)
-	{
-		reverse_rotate_lst(head_a, "rra\n");
-		push_lst(head_b, head_a, "pa\n");
-		rotate_lst(head_a, "ra\n");
-		rotate_lst(head_a, "ra\n");
-	}
-}
-
 void	sort_5(t_list **head_a, t_list **head_b)
 {
-	push_lst(head_a, head_b, "pb\n");
-	push_lst(head_a, head_b, "pb\n");
-	sort_3(head_a);
-	while ((*head_b) != NULL)
-	{
-		if ((*head_b)->pos < (*head_a)->pos)
-			push_lst(head_b, head_a, "pa\n");
-		else if ((*head_b)->pos > last_pos(head_a))
-		{
-			push_lst(head_b, head_a, "pa\n");
-			rotate_lst(head_a, "ra\n");
-		}
-		else if ((*head_b)->pos > (*head_a)->pos
-			&& (*head_b)->pos < (*head_a)->next->pos)
-		{
-			push_lst(head_b, head_a, "pa\n");
-			swap_lst(head_a, "sa\n");
-		}
-		else
-			sort_5_helper(head_a, head_b);
-	}
+	get_lowest(head_a, head_b);
+	sort_4(head_a, head_b);
+	push_lst(head_b, head_a, "pa\n");
 }
 
 void	sort_4(t_list **head_a, t_list **head_b)
@@ -101,9 +63,9 @@ void	sort_lst(t_list **head_a, t_list **head_b, int argc)
 		sort_4(head_a, head_b);
 	else if (argc == 5)
 		sort_5(head_a, head_b);
-	else if (argc > 5 && argc < 100)
+	else if (argc > 5 && argc <= 85)
 		small_sort(head_a, head_b, argc);
 	// else
 	// 	radix_sort(head_a, head_b, argc);
-	//system("leaks push_swap");
+	// system("leaks push_swap");
 }
