@@ -8,6 +8,8 @@ SRC = main.c			\
 	  lowest.c			\
 	  small_sort.c		\
 	  highest.c			\
+	  radix.c			\
+	  bit.c				\
 
 CC = gcc
 

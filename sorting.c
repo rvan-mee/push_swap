@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 11:59:01 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/30 16:46:59 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/03/31 19:13:03 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	sort_lst(t_list **head_a, t_list **head_b, int argc)
 		sort_4(head_a, head_b);
 	else if (argc == 5)
 		sort_5(head_a, head_b);
-	else if (argc > 5 && argc <= 80)
+	else if (argc > 5 && argc <= 150)
 		small_sort(head_a, head_b, argc);
-	// else
-	// 	radix_sort(head_a, head_b, argc);
-	// system("leaks push_swap");
+	else
+		radix_sort(head_a, head_b, argc);
 }
+	// && argc <= 150
