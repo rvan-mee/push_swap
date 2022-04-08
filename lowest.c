@@ -6,23 +6,14 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 16:50:46 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/28 16:47:10 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/06 14:06:28 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	last_pos(t_list **head_a)
-{
-	t_list	*tmp;
-
-	tmp = (*head_a);
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp->pos);
-}
-
-int	current_lowest(t_list **head)
+// Returns the loswest poition in the given list.
+int	get_lowest(t_list **head)
 {
 	int		current_lowest;
 	int		i;
@@ -40,6 +31,8 @@ int	current_lowest(t_list **head)
 	return (current_lowest);
 }
 
+// Returns 1 or 2 depending on what half of
+// the stack the lowest position is positioned in.
 int	lowest_half(t_list **head, int lowest)
 {
 	t_list	*tmp;
@@ -59,13 +52,14 @@ int	lowest_half(t_list **head, int lowest)
 	return (1);
 }
 
-void	get_lowest(t_list **head_a, t_list **head_b)
+// Pushes the lowest position inside of a to b.
+void	push_lowest(t_list **head_a, t_list **head_b)
 {
 	t_list	*last;
 	int		lowest;
 
 	last = ft_lstlast((*head_a));
-	lowest = current_lowest(head_a);
+	lowest = get_lowest(head_a);
 	if (lowest_half(head_a, lowest) == 1)
 	{
 		while ((*head_a)->pos != lowest)

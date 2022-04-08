@@ -6,12 +6,13 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 18:49:33 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/22 17:07:07 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/04 15:43:28 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Uses free() on a char ** to free all srtings.
 void	free_split(char **split)
 {
 	int	i;
@@ -25,6 +26,7 @@ void	free_split(char **split)
 	free(split);
 }
 
+// Checks if the given list is sorted.
 int	is_sorted(t_list *lst)
 {
 	int	prev;
@@ -41,12 +43,15 @@ int	is_sorted(t_list *lst)
 	return (1);
 }
 
+// Writes the given string before exiting the program.
 void	exit_with_error(char *error)
 {
 	write(1, error, ft_strlen(error));
 	exit(1);
 }
 
+// Checks if there is a -1 left in the list 
+// indicating a duplicate number.
 void	duplicate_check(t_list *a)
 {
 	while (a != NULL)
@@ -57,6 +62,7 @@ void	duplicate_check(t_list *a)
 	}
 }
 
+// Checks the input and instantly adds it to list a.
 void	input_check(int *argc, char **argv, t_list **a)
 {
 	int		i;

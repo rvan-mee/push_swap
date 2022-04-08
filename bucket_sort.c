@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   small_sort.c                                       :+:    :+:            */
+/*   bucket_sort.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:13:36 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/03/31 16:58:34 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/05 17:19:34 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Returns the amount of steps it takes
+// to get to a number within the range from the top.
 int	range_smallest_from_top(int start_range, int end_range, t_list **head)
 {
 	t_list	*tmp;
@@ -27,6 +29,8 @@ int	range_smallest_from_top(int start_range, int end_range, t_list **head)
 	return (count);
 }
 
+// Returns the amount of steps it takes
+// to get to a number within the range from the bottom.
 int	range_smallest_from_bot(int start_range, int end_range, t_list **head)
 {
 	t_list	*tmp;
@@ -48,7 +52,8 @@ int	range_smallest_from_bot(int start_range, int end_range, t_list **head)
 	return (lst_size - count);
 }
 
-void	small_sort_rotate(t_list **head_a, int top, int bot, int selection)
+// Rotates or reverse rotates x amount of times depending on the selection.
+void	bucket_sort_rotate(t_list **head_a, int top, int bot, int selection)
 {
 	if (selection == 1)
 	{
@@ -68,6 +73,7 @@ void	small_sort_rotate(t_list **head_a, int top, int bot, int selection)
 	}
 }
 
+// Extention of the bucket_sort function.
 void	sort_helper(t_list **head_a, t_list **head_b, int range_s, int range_e)
 {
 	int	top;
@@ -80,9 +86,9 @@ void	sort_helper(t_list **head_a, t_list **head_b, int range_s, int range_e)
 		bot = range_smallest_from_bot(range_s, range_e, head_a);
 		top = range_smallest_from_top(range_s, range_e, head_a);
 		if (top <= bot)
-			small_sort_rotate(head_a, top, bot, 1);
+			bucket_sort_rotate(head_a, top, bot, 1);
 		else if (top > bot && bot != 0)
-			small_sort_rotate(head_a, top, bot, 2);
+			bucket_sort_rotate(head_a, top, bot, 2);
 		else if (bot == 0)
 			reverse_rotate_lst(head_a, "rra\n");
 		push_lst(head_a, head_b, "pb\n");
@@ -90,7 +96,8 @@ void	sort_helper(t_list **head_a, t_list **head_b, int range_s, int range_e)
 	}
 }
 
-void	small_sort(t_list **head_a, t_list **head_b, int argc)
+// Sorting used for a numbercount <= 150.
+void	bucket_sort(t_list **head_a, t_list **head_b, int argc)
 {
 	int	pre_sort_stacks;
 	int	range;
@@ -99,7 +106,8 @@ void	small_sort(t_list **head_a, t_list **head_b, int argc)
 
 	i = 0;
 	offset = 0;
-	pre_sort_stacks = argc / 2 / 10 + 1;
+	pre_sort_stacks = 5;
+	// pre_sort_stacks = argc / 2 / 10 + 1;    <<<< make in stacks of 150
 	range = argc / pre_sort_stacks;
 	while (i < pre_sort_stacks)
 	{
@@ -108,5 +116,6 @@ void	small_sort(t_list **head_a, t_list **head_b, int argc)
 		if (i == pre_sort_stacks - 1)
 			offset += argc % pre_sort_stacks;
 	}
-	heighest_to_a(head_a, head_b);
+	sort_to_a(head_a, head_b);
+	// heighest_to_a(head_a, head_b);
 }

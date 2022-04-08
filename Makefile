@@ -6,10 +6,11 @@ SRC = main.c			\
 	  swap.c			\
 	  sorting.c			\
 	  lowest.c			\
-	  small_sort.c		\
+	  bucket_sort.c		\
 	  highest.c			\
 	  radix.c			\
 	  bit.c				\
+	  sort_to_a.c		\
 
 CC = gcc
 
