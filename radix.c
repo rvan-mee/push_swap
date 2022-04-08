@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/31 12:01:27 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/05 13:12:32 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/08 19:08:10 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,8 @@ void	radix_sort(t_list **head_a, t_list **head_b, int argc)
 			push_lst(head_a, head_b, "pb\n");
 		else
 			rotate_lst(head_a, "ra\n");
-		// else if ((*head_a)->pos == (*head_a)->next->pos - 1)
-		// 	swap_lst(head_a, "sa\n");
-		// else
-		// 	push_lst(head_a, head_b, "pb\n");
 	}
+	// sort_to_a(head_a, head_b);
 	heighest_to_a(head_a, head_b);
 	// printf("reduce_c = %d, argc = %d\n", reduce_c, argc);
 }

@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/05 15:17:54 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/06 22:01:23 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/08 17:58:32 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define PUSH_SWAP_H
 # include <limits.h>
 # include "libft/libft.h"
-
+# define TRUE 1
+# define FALSE 0
 typedef struct s_bits
 {
 	int	a;
@@ -22,6 +23,15 @@ typedef struct s_bits
 	int	b_next;
 	int	length;
 }	t_bits;
+
+typedef struct s_moves
+{
+	int	current_a;
+	int	current_b;
+	int	least_a;
+	int	least_b;
+	int	best_pos;
+}	t_moves;
 
 int		is_sorted(t_list *lst);
 int		lowest_half(t_list **head, int lowest);
@@ -53,6 +63,14 @@ void	swap_both_lst(t_list **head_a, t_list **head_b);
 void	push_lowest(t_list **head_a, t_list **head_b);
 void	heighest_to_a(t_list **head_a, t_list **head_b);
 void	sort_to_a(t_list **head_a, t_list **head_b);
+
+int		get_move_count_a(t_list *lst_a, int pos);
+int		get_move_count_b(t_list *b, int pos);
+void	sort_to_a(t_list **head_a, t_list **head_b);
+void	rotate_till_pos(t_list **head_b, int pos);
+void	rotate_after_sorted(t_list **head_a);
+void	rotate_pushback(t_list **head_a, t_list **head_b, int pos);
+void	rotate_optimize(t_list **head_a, t_list **head_b, t_moves *moves);
 
 void	print_lists(t_list *head_a, t_list *head_b);
 

@@ -106,7 +106,7 @@ void	bucket_sort(t_list **head_a, t_list **head_b, int argc)
 
 	i = 0;
 	offset = 0;
-	pre_sort_stacks = 5;
+	pre_sort_stacks = argc / 150 + 1;
 	// pre_sort_stacks = argc / 2 / 10 + 1;    <<<< make in stacks of 150
 	range = argc / pre_sort_stacks;
 	while (i < pre_sort_stacks)
@@ -116,6 +116,6 @@ void	bucket_sort(t_list **head_a, t_list **head_b, int argc)
 		if (i == pre_sort_stacks - 1)
 			offset += argc % pre_sort_stacks;
 	}
+	// printf("done with bucket sort!!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	sort_to_a(head_a, head_b);
-	// heighest_to_a(head_a, head_b);
 }

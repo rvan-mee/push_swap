@@ -6,21 +6,16 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/05 14:33:05 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/08 15:56:17 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/08 21:01:31 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
-#define TRUE 1
-#define FALSE 0
-int rotate_front = 0;
-int rotate_back = 0;
-int	max_rotate_back = 0;
 
-// Returns the amount of rotations it would take for pos to fit on the correct position within list a.
-// If check_reverse is true it will return the amount from bottom if its lower.
-int	get_rotate_count_a(t_list *lst_a, int pos, int check_reverse)
+// Returns the amount of rotations it would take
+// for pos to fit on the correct position within list a.
+int	get_move_count_a(t_list *lst_a, int pos)
 {
 	t_list	*after;
 	int		before;
@@ -29,9 +24,8 @@ int	get_rotate_count_a(t_list *lst_a, int pos, int check_reverse)
 	int		lowest;
 
 	moves = 0;
-	after = ft_lstlast(lst_a);
-	before = after->pos;
 	after = lst_a;
+	before = last_pos(&lst_a);
 	heighest = get_heighest(&lst_a);
 	lowest = get_lowest(&lst_a);
 	while (after != NULL)
@@ -44,13 +38,14 @@ int	get_rotate_count_a(t_list *lst_a, int pos, int check_reverse)
 		after = after->next;
 		moves += 1;
 	}
-	if ((check_reverse == TRUE) && (moves > ft_lstsize(lst_a) / 2))
-			moves = ft_lstsize(lst_a) - moves;
+	if (moves > ft_lstsize(lst_a) / 2)
+			moves = (ft_lstsize(lst_a) - moves) * -1;
 	return (moves);
 }
 
-// Retruns the total amount of moves it would take for pos to land on the correct position within a.
-int	get_move_count(t_list *a, t_list *b, int pos)
+// Retruns the total amount of moves it would take
+// for pos to land on the correct position within a.
+int	get_move_count_b(t_list *b, int pos)
 {
 	t_list	*tmp;
 	int		moves;
@@ -65,130 +60,64 @@ int	get_move_count(t_list *a, t_list *b, int pos)
 		moves += 1;
 	}
 	if (moves > lst_size / 2)
-		moves = lst_size - moves;
-	return (get_rotate_count_a(a, pos, TRUE) + moves);
+		moves = (lst_size - moves) * -1;
+	return (moves);
 }
 
-// Rotates the given list to have the given pos on top.
-void	rotate_till_pos(t_list **head_b, int pos)
+// Resets all values in moves.
+void	reset_moves(t_moves *moves)
 {
-	t_list	*tmp;
-	int		rotate;
-
-	rotate = 0;
-	tmp = (*head_b);
-	while (tmp != NULL && tmp->pos != pos)
-	{
-		tmp = tmp->next;
-		rotate += 1;
-	}
-	if (rotate > ft_lstsize(*head_b) / 2)
-	{
-		rotate = ft_lstsize(*head_b) - rotate;
-		while ((*head_b)->pos != pos)
-			reverse_rotate_lst(head_b, "rrb\n");
-	}
-	else
-		while ((*head_b)->pos != pos)
-		{
-			if ((*head_b)->next->pos == pos)
-				swap_lst(head_b, "sb\n");
-			else
-				rotate_lst(head_b, "rb\n");
-		}
+	moves->current_a = INT_MAX / 2;
+	moves->current_b = INT_MAX / 2;
+	moves->least_a = INT_MAX / 2;
+	moves->least_b = INT_MAX / 2;
+	moves->best_pos = INT_MAX / 2;
 }
 
-// Rotates or reverse rotates a till the pos in b can be pushed to the top and then does so.
-void	rotate_pushback(t_list **head_a, t_list **head_b, int pos)
+// simple ABS function.
+int	ft_abs(int num)
 {
-	int	rotate;
-	int	rotate_debug;
-
-	rotate = get_rotate_count_a(*head_a, pos, FALSE);
-	rotate_debug = rotate;
-	if (rotate <= ft_lstsize(*head_a) / 2)
-	{
-		while (rotate > 0)
-		{	
-			rotate_lst(head_a, "ra\n");
-			rotate -= 1;
-		}
-	}
-	else
-	{
-		rotate = ft_lstsize(*head_a) - rotate;
-		while (rotate > 0)
-		{
-			reverse_rotate_lst(head_a, "rra\n");
-			rotate -= 1;
-		}
-	}
-	push_lst(head_b, head_a, "pa\n");
+	if (num < 0)
+		return (num * -1);
+	return (num);
 }
 
-
-	// debugging
-	// t_list *printing;
-	// printing = ft_lstlast(*head_a);
-	// if (ft_lstsize(*head_a) > 1)
-	// {
-	// 	if (ft_lstsize(*head_a) > 2
-	// 		&& (((printing->pos > (*head_a)->pos) && printing->pos != get_heighest(head_a))
-	// 		|| (((*head_a)->pos > (*head_a)->next->pos) && (*head_a)->next->pos != get_lowest(head_a))))
-	// 	{
-	// 		printf("\npos after push: %d - %d - %d, incoming pos: %d\n", printing->pos, (*head_a)->pos, (*head_a)->next->pos, pos);
-	// 		printf("heighest in list: %d current: %d lowest: %d\n", get_heighest(head_a), (*head_a)->pos, get_lowest(head_a));
-	// 		if (rotate_debug <= ft_lstsize(*head_a) / 2)
-	// 			rotate_front += 1;
-	// 		else
-	// 			rotate_back += 1;
-	// 		printf("rotate: %d, reverse rotate: %d max rotate back: %d\n", rotate_front, rotate_back, max_rotate_back);
-	// 		printf("\n\n\nerror??\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	// 	}
-	// }
-
-
-
-
-void	rotate_after_sorted(t_list **head_a)
+// Checks if the current move is more efficient then the
+// last best move found.
+void	check_moves(t_moves *moves, int pos)
 {
-	if (lowest_half(head_a, 0) == 1)
-		while ((*head_a)->pos != 0)
-			rotate_lst(head_a, "ra\n");
-	else
-		while ((*head_a)->pos != 0)
-			reverse_rotate_lst(head_a, "rra\n");
+	if (ft_abs(moves->current_a) + ft_abs(moves->current_b)
+		< ft_abs(moves->least_a) + ft_abs(moves->least_b))
+	{
+		moves->least_a = moves->current_a;
+		moves->least_b = moves->current_b;
+		moves->best_pos = pos;
+	}
 }
 
-// printf("best pos found is %d with %d move(s)\n", best_pos, least + 1);
-
-// Finds the least amount of moves for a node in list b to get on the proper place in list a,
-// repeats till list b is empty.
+// Finds the least amount of moves for a node in list b 
+// to get on the proper place in list a, repeats till list b is empty.
 void	sort_to_a(t_list **head_a, t_list **head_b)
 {
+	t_moves	moves;
 	t_list	*tmp;
-	int		best_pos;
-	int		moves;
-	int		least;
 
 	while (ft_lstsize(*head_a) < 2)
 		push_lst(head_b, head_a, "pa\n");
 	while (*head_b != NULL)
 	{
-		least = INT_MAX;
+		reset_moves(&moves);
 		tmp = *head_b;
 		while (tmp != NULL)
 		{
-			moves = get_move_count(*head_a, *head_b, tmp->pos);
-			if (moves < least)
-			{
-				least = moves;
-				best_pos = tmp->pos;
-			}
+			moves.current_b = get_move_count_b(*head_b, tmp->pos);
+			moves.current_a = get_move_count_a(*head_a, tmp->pos);
+			check_moves(&moves, tmp->pos);
 			tmp = tmp->next;
 		}
-		rotate_till_pos(head_b, best_pos);
-		rotate_pushback(head_a, head_b, best_pos);
+		rotate_optimize(head_a, head_b, &moves);
+		rotate_till_pos(head_b, moves.best_pos);
+		rotate_pushback(head_a, head_b, moves.best_pos);
 	}
 	rotate_after_sorted(head_a);
 }

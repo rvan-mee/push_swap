@@ -1,16 +1,17 @@
-SRC = main.c			\
-	  rotate.c			\
-	  parsing.c			\
-	  position_sort.c	\
-	  push.c			\
-	  swap.c			\
-	  sorting.c			\
-	  lowest.c			\
-	  bucket_sort.c		\
-	  highest.c			\
-	  radix.c			\
-	  bit.c				\
-	  sort_to_a.c		\
+SRC = main.c				\
+	  rotate.c				\
+	  parsing.c				\
+	  position_sort.c		\
+	  push.c				\
+	  swap.c				\
+	  sorting.c				\
+	  lowest.c				\
+	  bucket_sort.c			\
+	  highest.c				\
+	  radix.c				\
+	  bit.c					\
+	  sort_to_a.c			\
+	  sort_a_helper.c	\
 
 CC = gcc
 
