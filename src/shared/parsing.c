@@ -6,11 +6,11 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 18:49:33 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/04 15:43:28 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/09 18:03:17 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../mandatory/push_swap.h"
 
 // Uses free() on a char ** to free all srtings.
 void	free_split(char **split)
@@ -43,10 +43,10 @@ int	is_sorted(t_list *lst)
 	return (1);
 }
 
-// Writes the given string before exiting the program.
+// Writes the given string on the stderr before exiting the program.
 void	exit_with_error(char *error)
 {
-	write(1, error, ft_strlen(error));
+	write(2, error, ft_strlen(error));
 	exit(1);
 }
 

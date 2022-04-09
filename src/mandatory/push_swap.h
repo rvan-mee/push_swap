@@ -6,16 +6,17 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/05 15:17:54 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/08 17:58:32 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/09 15:25:40 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <limits.h>
-# include "libft/libft.h"
-# define TRUE 1
-# define FALSE 0
+# include "../../libft/libft.h"
+# include "../shared/shared.h"
+
+// struct used for radix sort
 typedef struct s_bits
 {
 	int	a;
@@ -24,6 +25,7 @@ typedef struct s_bits
 	int	length;
 }	t_bits;
 
+// struct used for sort_to_a
 typedef struct s_moves
 {
 	int	current_a;
@@ -53,17 +55,10 @@ void	bucket_sort(t_list **head_a, t_list **head_b, int argc);
 void	quick_sort(t_list **head_a, t_list **head_b, int argc);
 void	bit_init(t_bits *bits, t_list *head_a, t_list *head_b, int i);
 void	radix_sort(t_list **head_a, t_list **head_b, int argc);
-void	push_lst(t_list **take, t_list **push, char *str);
-void	reverse_rotate_lst(t_list **head_lst, char *str);
-void	reverse_rotate_both_lst(t_list **head_a, t_list **head_b);
-void	rotate_lst(t_list **head_lst, char *str);
-void	rotate_both_lst(t_list **head_a, t_list **head_b);
-void	swap_lst(t_list **head_lst, char *str);
-void	swap_both_lst(t_list **head_a, t_list **head_b);
 void	push_lowest(t_list **head_a, t_list **head_b);
 void	heighest_to_a(t_list **head_a, t_list **head_b);
-void	sort_to_a(t_list **head_a, t_list **head_b);
 
+void	sort_to_a(t_list **head_a, t_list **head_b);
 int		get_move_count_a(t_list *lst_a, int pos);
 int		get_move_count_b(t_list *b, int pos);
 void	sort_to_a(t_list **head_a, t_list **head_b);

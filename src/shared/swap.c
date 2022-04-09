@@ -6,11 +6,11 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/22 10:46:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/05 13:07:58 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/09 14:32:45 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../mandatory/push_swap.h"
 
 // Swaps the first and second node in both lists respectivly.
 void	swap_both_lst(t_list **head_a, t_list **head_b)

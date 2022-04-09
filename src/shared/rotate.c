@@ -6,11 +6,11 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 18:47:41 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/05 15:47:42 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/09 14:32:42 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../mandatory/push_swap.h"
 
 // Reverse rotates both lists.
 void	reverse_rotate_both_lst(t_list **head_a, t_list **head_b)

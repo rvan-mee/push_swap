@@ -6,11 +6,11 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 18:52:11 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/04 15:44:37 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/09 14:32:39 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../mandatory/push_swap.h"
 
 // Pushes from take to push and writes the string.
 void	push_lst(t_list **take, t_list **push, char *str)

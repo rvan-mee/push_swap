@@ -55,15 +55,13 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 ## 		-fsanitize=address -g
 CC = gcc
 
-all: $(NAME)($(OBJ))
-
-bonus: $(NAME)($(OBJ)) $(NAME)($(BNS_OBJ))
+all: $(NAME)
 
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): %.o
-	ar rcs $(NAME) $<
+$(NAME): $(OBJ) $(BNS_OBJ)
+	ar rcs $(NAME) $^
 
 clean:
 	rm -f $(OBJ) $(BNS_OBJ)

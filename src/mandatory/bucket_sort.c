@@ -96,7 +96,7 @@ void	sort_helper(t_list **head_a, t_list **head_b, int range_s, int range_e)
 	}
 }
 
-// Sorting used for a numbercount <= 150.
+// Main sorting algorithm used.
 void	bucket_sort(t_list **head_a, t_list **head_b, int argc)
 {
 	int	pre_sort_stacks;
@@ -106,8 +106,7 @@ void	bucket_sort(t_list **head_a, t_list **head_b, int argc)
 
 	i = 0;
 	offset = 0;
-	pre_sort_stacks = argc / 150 + 1;
-	// pre_sort_stacks = argc / 2 / 10 + 1;    <<<< make in stacks of 150
+	pre_sort_stacks = argc / 150;
 	range = argc / pre_sort_stacks;
 	while (i < pre_sort_stacks)
 	{
