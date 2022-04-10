@@ -34,30 +34,34 @@ SHARED_OBJ = $(SHARED_SRC:.c=.o)
 
 $(TARGET): $(OBJ)
 	@make -C libft
-	$(CC) $(OBJ) $(CFLAGS) libft/libft.a -o $(TARGET)
+	@$(CC) $(OBJ) $(CFLAGS) libft/libft.a -o $(TARGET)
 
 $(BNS_TARGET): $(BNS_OBJ)
 	@make -C libft
-	$(CC) $(BNS_OBJ) $(CFLAGS) libft/libft.a -o $(BNS_TARGET)
+	@$(CC) $(BNS_OBJ) $(CFLAGS) libft/libft.a -o $(BNS_TARGET)
 
 $(OBJDIR)/%.o: src/mandatory/%.c src/mandatory/push_swap.h
+	@mkdir -p objs
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)/%.o: src/bonus/%.c
+	@mkdir -p objs
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)/%.o: src/shared/%.c src/shared/shared.h
+	@mkdir -p objs
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "cleaning .o files"
+	@echo cleaning .o files
 	@make -C libft clean
-	rm -f $(OBJ) $(BNS_OBJ)
+	@rm -f $(OBJ) $(BNS_OBJ)
 
 fclean: clean
-	@echo "cleaning folders"
-	rm -f libft/libft.a
-	rm -f $(TARGET)
+	@echo cleaning folders
+	@rm -f libft/libft.a
+	@rm -f $(TARGET)
+	@rm -f $(BNS_TARGET)
 
 all: $(TARGET) $(BNS_TARGET)
 

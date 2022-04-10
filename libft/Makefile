@@ -61,13 +61,13 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(BNS_OBJ)
-	ar rcs $(NAME) $^
+	@ar rcs $(NAME) $^
 
 clean:
-	rm -f $(OBJ) $(BNS_OBJ)
+	@rm -f $(OBJ) $(BNS_OBJ)
 
 fclean: clean
-	rm -f libft.a
+	@rm -f libft.a
 
 re: fclean all
 
