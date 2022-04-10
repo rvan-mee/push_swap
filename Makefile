@@ -20,7 +20,7 @@ CC = gcc
 
 OBJDIR = objs
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra
 ## -fsanitize=address -g
 TARGET = push_swap
 
@@ -43,7 +43,7 @@ $(BNS_TARGET): $(BNS_OBJ)
 $(OBJDIR)/%.o: src/mandatory/%.c src/mandatory/push_swap.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJDIR)/%.o: src/bonus/%.c src/bonus/checker.h
+$(OBJDIR)/%.o: src/bonus/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)/%.o: src/shared/%.c src/shared/shared.h
@@ -64,8 +64,5 @@ all: $(TARGET) $(BNS_TARGET)
 bonus: $(BNS_TARGET)
 
 re: fclean all
-
-# all: $(TARGET)
-# 	@make -C libft bonus
 
 .PHONY: all clean fclean re bonus

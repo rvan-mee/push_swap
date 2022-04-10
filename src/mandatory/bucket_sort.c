@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   bucket_sort.c                                       :+:    :+:            */
+/*   bucket_sort.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:13:36 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/05 17:19:34 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/10 16:27:35 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	range_smallest_from_bot(int start_range, int end_range, t_list **head)
 	current_count = 0;
 	tmp = *head;
 	lst_size = ft_lstsize(*head);
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
 		if (tmp->pos >= start_range && tmp->pos <= end_range)
 			count = current_count;
@@ -107,6 +107,8 @@ void	bucket_sort(t_list **head_a, t_list **head_b, int argc)
 	i = 0;
 	offset = 0;
 	pre_sort_stacks = argc / 150;
+	if (argc % 150 > 0)
+		pre_sort_stacks += 1;
 	range = argc / pre_sort_stacks;
 	while (i < pre_sort_stacks)
 	{
@@ -115,6 +117,5 @@ void	bucket_sort(t_list **head_a, t_list **head_b, int argc)
 		if (i == pre_sort_stacks - 1)
 			offset += argc % pre_sort_stacks;
 	}
-	// printf("done with bucket sort!!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	sort_to_a(head_a, head_b);
 }

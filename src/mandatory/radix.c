@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/31 12:01:27 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/08 19:08:10 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/10 16:06:41 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	radix_sort_b(t_list **head_a, t_list **head_b, int i, int *reduce)
 			rotate_lst(head_b, "rb\n");
 		else if (bit.b == 0 && bit.a == 0)
 		{
-			rotate_both_lst(head_a, head_b);
+			rotate_both_lst(head_a, head_b, 1);
 			*reduce += 1;
 		}
 		bit.length -= 1;
@@ -46,14 +46,7 @@ void	radix_sort_a(t_list **head_a, t_list **head_b, int i, int *reduce)
 	{
 		if (get_bit((*head_a)->pos, i) == 0)
 			push_lst(head_a, head_b, "pb\n");
-		// else if (get_bit((*head_a)->pos, i) == 1 && (*head_b != NULL && get_bit((*head_b)->pos, i) == 0))
-		// 	rotate_lst(head_a, "ra\n");
-		// else if (get_bit((*head_a)->pos, i) == 1 && (*head_b != NULL && get_bit((*head_b)->pos, i) == 1))
-		// {
-		// 	rotate_both_lst(head_a, head_b);
-		// 	*reduce += 1;
-		// }
-		else 
+		else
 			rotate_lst(head_a, "ra\n");
 		length--;
 	}
@@ -64,7 +57,6 @@ void	radix_sort(t_list **head_a, t_list **head_b, int argc)
 {
 	int		shift_amount;
 	int		reduce;
-	int		reduce_c = 0;
 	int		i;
 
 	i = 0;
@@ -72,12 +64,8 @@ void	radix_sort(t_list **head_a, t_list **head_b, int argc)
 	while (i < shift_amount)
 	{
 		radix_sort_a(head_a, head_b, i, &reduce);
-		reduce_c += reduce;
 		if (i != shift_amount - 1)
-		{
 			radix_sort_b(head_a, head_b, i, &reduce);
-			reduce_c += reduce;
-		}
 		i++;
 	}
 	while (*head_a != NULL)
@@ -87,7 +75,5 @@ void	radix_sort(t_list **head_a, t_list **head_b, int argc)
 		else
 			rotate_lst(head_a, "ra\n");
 	}
-	// sort_to_a(head_a, head_b);
 	heighest_to_a(head_a, head_b);
-	// printf("reduce_c = %d, argc = %d\n", reduce_c, argc);
 }

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   swap.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/03/22 10:46:37 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/09 14:32:45 by rvan-mee      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rvan-mee <rvan-mee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/22 10:46:37 by rvan-mee          #+#    #+#             */
+/*   Updated: 2022/04/10 13:49:54 by rvan-mee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mandatory/push_swap.h"
 
 // Swaps the first and second node in both lists respectivly.
-void	swap_both_lst(t_list **head_a, t_list **head_b)
+void	swap_both_lst(t_list **head_a, t_list **head_b, int print)
 {
 	swap_lst(head_a, NULL);
-	swap_lst(head_b, "ss\n");
+	swap_lst(head_b, NULL);
+	if (print == 1)
+		write(1, "ss\n", 3);
 }
 
 // Swaps the first and second node in the given list.

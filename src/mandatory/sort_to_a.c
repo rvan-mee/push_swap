@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/05 14:33:05 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/09 19:38:06 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/09 19:43:02 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,6 @@ void	reset_moves(t_moves *moves)
 	moves->least_a = INT_MAX / 2;
 	moves->least_b = INT_MAX / 2;
 	moves->best_pos = INT_MAX / 2;
-}
-
-// simple ABS function.
-int	ft_abs(int num)
-{
-	if (num < 0)
-		return (num * -1);
-	return (num);
 }
 
 // Checks if the current move is more efficient then the

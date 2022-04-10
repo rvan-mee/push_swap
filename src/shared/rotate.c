@@ -6,24 +6,28 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 18:47:41 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/09 14:32:42 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/10 13:49:15 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mandatory/push_swap.h"
 
 // Reverse rotates both lists.
-void	reverse_rotate_both_lst(t_list **head_a, t_list **head_b)
+void	reverse_rotate_both_lst(t_list **head_a, t_list **head_b, int print)
 {
 	reverse_rotate_lst(head_a, NULL);
-	reverse_rotate_lst(head_b, "rrr\n");
+	reverse_rotate_lst(head_b, NULL);
+	if (print == 1)
+		write(1, "rrr\n", 4);
 }
 
 // Rotates both lists.
-void	rotate_both_lst(t_list **head_a, t_list **head_b)
+void	rotate_both_lst(t_list **head_a, t_list **head_b, int print)
 {
 	rotate_lst(head_a, NULL);
-	rotate_lst(head_b, "rr\n");
+	rotate_lst(head_b, NULL);
+	if (print == 1)
+		write(1, "rr\n", 3);
 }
 
 // Rotates the last node of the list to the front.

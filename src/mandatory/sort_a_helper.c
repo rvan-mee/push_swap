@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/08 17:07:05 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/08 19:34:04 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/10 15:47:07 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,24 @@ void	rotate_optimize(t_list **head_a, t_list **head_b, t_moves *moves)
 {
 	while (moves->least_a < 0 && moves->least_b < 0)
 	{
-		reverse_rotate_both_lst(head_a, head_b);
+		reverse_rotate_both_lst(head_a, head_b, 1);
 		moves->least_a += 1;
 		moves->least_b += 1;
 	}
 	while (moves->least_a > 0 && moves->least_b > 0)
 	{
-		rotate_both_lst(head_a, head_b);
+		rotate_both_lst(head_a, head_b, 1);
 		moves->least_a -= 1;
 		moves->least_b -= 1;
 	}
+}
+
+// simple ABS function.
+int	ft_abs(int num)
+{
+	if (num < 0)
+		return (num * -1);
+	return (num);
 }
 
 // Rotates the given list to have the given pos on top.
