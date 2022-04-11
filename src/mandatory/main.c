@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/05 15:17:56 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/10 16:03:22 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/11 15:08:48 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 		return (0);
 	head_a = NULL;
 	head_b = NULL;
-	setbuf(stdout, 0);
 	input_check(&argc, argv, &head_a);
 	position_sort(head_a, argc);
 	duplicate_check(head_a);

@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 13:42:31 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/11 12:38:28 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/11 15:09:00 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	main(int argc, char **argv)
 
 	input_check(&argc, argv, &stack_a);
 	position_sort(stack_a, argc);
+	duplicate_check(stack_a);
 	while (1)
 	{
 		output = read_output();
