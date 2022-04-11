@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 13:42:31 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/10 15:53:06 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/04/11 12:38:28 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_if_sorted(t_list **head_a, t_list **head_b)
 int	read_error_check(int bytes_read, int total_bytes_read, char *buffer)
 {
 	if (bytes_read == -1)
-		exit_with_error("Read error\n");
+		exit_with_error("Read error\n");
 	if (total_bytes_read > 5)
 		exit_with_error("KO\n");
 	if (bytes_read == 0 && buffer[0] == '\0')
@@ -80,7 +80,7 @@ char	*read_output(void)
 	total_bytes_read = 0;
 	buffer = malloc(sizeof(char) * 6);
 	if (buffer == NULL)
-		exit_with_error("Malloc failed\n");
+		exit_with_error("Malloc failed\n");
 	buffer[0] = '\0';
 	while (1)
 	{
