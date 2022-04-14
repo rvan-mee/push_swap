@@ -16,10 +16,8 @@
 int	get_lowest(t_list **head)
 {
 	int		current_lowest;
-	int		i;
 	t_list	*tmp;
 
-	i = 0;
 	current_lowest = INT_MAX;
 	tmp = (*head);
 	while (tmp != NULL)
@@ -55,10 +53,8 @@ int	lowest_half(t_list **head, int lowest)
 // Pushes the lowest position inside of a to b.
 void	push_lowest(t_list **head_a, t_list **head_b)
 {
-	t_list	*last;
 	int		lowest;
 
-	last = ft_lstlast((*head_a));
 	lowest = get_lowest(head_a);
 	if (lowest_half(head_a, lowest) == 1)
 	{
