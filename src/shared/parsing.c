@@ -18,7 +18,7 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	while (split[i] != '\0')
+	while (split[i])
 	{
 		free(split[i]);
 		i++;
@@ -78,7 +78,7 @@ void	input_check(int *argc, char **argv, t_list **a)
 	{
 		j = 0;
 		nums = ft_split(argv[i], ' ');
-		while (nums[j] != '\0')
+		while (nums[j])
 		{
 			temp = ft_atoi(nums[j]);
 			if (temp > INT_MAX || temp < INT_MIN)

@@ -28,10 +28,8 @@ void	rotate_after_sorted(t_list **head_a)
 void	rotate_pushback(t_list **head_a, t_list **head_b, int pos)
 {
 	int	rotate;
-	int	rotate_debug;
 
 	rotate = get_move_count_a(*head_a, pos);
-	rotate_debug = rotate;
 	if (rotate > 0)
 	{
 		while (rotate > 0)

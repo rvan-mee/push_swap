@@ -25,10 +25,8 @@ int	last_pos(t_list **head)
 int	get_heighest(t_list **head)
 {
 	int		current_heighest;
-	int		i;
 	t_list	*tmp;
 
-	i = 0;
 	current_heighest = INT_MIN;
 	tmp = (*head);
 	while (tmp != NULL)
