@@ -6,7 +6,7 @@
 /*   By: rvan-mee <rvan-mee@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 13:42:31 by rvan-mee      #+#    #+#                 */
-/*   Updated: 2022/04/11 15:09:00 by rvan-mee      ########   odam.nl         */
+/*   Updated: 2022/07/11 17:02:52 by rvan-mee      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	preform_output(t_list **head_a, t_list **head_b, char *output)
 	else if (!ft_strncmp(output, "rrr\n", 5))
 		reverse_rotate_both_lst(head_a, head_b, 0);
 	else
-		exit_with_error("KO\n");
+		exit_with_error("ERROR\n");
 }
 
 // Checks if the list is properly sorted and if list b is emtpy.
@@ -55,10 +55,17 @@ void	check_if_sorted(t_list **head_a, t_list **head_b)
 // Checks if an error has occurred or if it is at the end of the file.
 int	read_error_check(int bytes_read, int total_bytes_read, char *buffer)
 {
+	char	c;
+
+	c = 'a';
 	if (bytes_read == -1)
 		exit_with_error("Read error\n");
 	if (total_bytes_read > 5)
-		exit_with_error("KO\n");
+	{
+		while (read(0, &c, 1) && c != '\n')
+			;
+		exit_with_error("ERROR\n");
+	}
 	if (bytes_read == 0 && buffer[0] == '\0')
 	{
 		free(buffer);
@@ -102,6 +109,8 @@ int	main(int argc, char **argv)
 	t_list	*stack_b;
 	char	*output;
 
+	if (argc == 1)
+		return (0);
 	input_check(&argc, argv, &stack_a);
 	position_sort(stack_a, argc);
 	duplicate_check(stack_a);
