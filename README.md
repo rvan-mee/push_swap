@@ -1,6 +1,7 @@
 # push_swap
 This is the push_swap project within 42 Codam's curriculum.
-You have to create an algorythm to sort the given numbers.
+You have to create an algorithm to sort the given numbers.
+The goal is to do so with the least amount of operations.
 
 ## restrictions:
 - You are only allowed to use 2 stacks.
